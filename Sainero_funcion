@@ -1,0 +1,14 @@
+function calcLanguages() {
+	const most_spk = Object.entries(countries.map(a => a.languages).reduce((a,c) =>{
+		return [...a,...c];
+	},[]).reduce((acc,current)=>{
+	acc[current] = (acc[current] || 0) +1;
+	return acc;
+},[])).sort((a,b) =>{
+		return b[1] - a[1];
+	}).slice(0,10).map(a => {
+		return {language: a[0], count: a[1]};
+	});
+
+	graph_title.textContent = '10 most speaked languages in the world';
+}
